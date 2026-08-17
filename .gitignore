@@ -1,0 +1,5 @@
+node_modules/
+_site/
+.idea/
+.claude/
+.DS_Store

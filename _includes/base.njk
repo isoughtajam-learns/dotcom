@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('theme')||'paper';}catch(e){}</script>
+<title>{% if title %}{{ title }} — {% endif %}Gautam Joshi</title>
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="alternate" type="application/rss+xml" title="Gautam Joshi — Writing" href="/feed.xml">
+</head>
+<body>
+
+  <div class="tile-grid" id="tile-grid" aria-hidden="true"></div>
+
+  <main>
+    {% if backHref %}
+    <a href="{{ backHref }}" class="back-button">&larr; {{ backLabel }}</a>
+    {% endif %}
+    {{ content | safe }}
+
+    <footer class="footer">
+      <a href="/" class="mono">gautamjoshi.com</a>
+      <div class="theme-switcher" id="theme-switcher"></div>
+    </footer>
+  </main>
+
+  <script src="/tiles.js"></script>
+  <script src="/theme-switcher.js"></script>
+</body>
+</html>

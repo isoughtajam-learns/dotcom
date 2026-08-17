@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('theme')||'paper';}catch(e){}</script>
+<title>Gautam Joshi</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="alternate" type="application/rss+xml" title="Gautam Joshi — Writing" href="/feed.xml">
+</head>
+<body>
+
+  <div class="tile-grid" id="tile-grid" aria-hidden="true"></div>
+
+  <main>
+    <header class="hero">
+      <h1 class="wordmark">Gautam Joshi</h1>
+      <p class="blurb">
+        I enjoy building creative, focused software-- dashboards, tools, and other things
+        that I find to be interesting. This is where I collect and write about them.
+      </p>
+      <nav class="social-links">
+        <a href="https://www.linkedin.com/in/gautamsjoshi/" target="_blank" rel="noopener">LinkedIn</a>
+        <span class="dot">·</span>
+        <a href="https://github.com/isoughtajam-learns" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </header>
+
+    <section class="section" aria-labelledby="projects-heading">
+      <h2 id="projects-heading" class="section-label">Projects</h2>
+      <ul class="tile-list">
+<!--        <li class="tile-row">-->
+<!--          <a href="https://fundhound.gautamjoshi.com" class="tile-link">-->
+<!--            <span class="tile-name">FundHound</span>-->
+<!--            <span class="tile-url">fundhound.gautamjoshi.com</span>-->
+<!--            <span class="tile-arrow">&rarr;</span>-->
+<!--          </a>-->
+<!--        </li>-->
+        <li class="tile-row">
+          <a href="http://irltransit.gautamjoshi.com" class="tile-link">
+            <span class="tile-name">IRL Transit</span>
+            <span class="tile-url">irltransit.gautamjoshi.com</span>
+            <span class="tile-arrow">&rarr;</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="writing-heading">
+      <h2 id="writing-heading" class="section-label">Writing</h2>
+      <ul class="tile-list">
+        <li class="tile-row">
+          <a href="/writing/" class="tile-link">
+            <span class="tile-name">All posts</span>
+            <span class="tile-url">/writing</span>
+            <span class="tile-arrow">&rarr;</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <footer class="footer">
+      <a href="/" class="mono">gautamjoshi.com</a>
+      <div class="theme-switcher" id="theme-switcher"></div>
+    </footer>
+  </main>
+
+  <script src="tiles.js"></script>
+  <script src="theme-switcher.js"></script>
+</body>
+</html>

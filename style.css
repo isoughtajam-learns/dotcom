@@ -1,0 +1,385 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&family=JetBrains+Mono:wght@400;500&display=swaphttps://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght,XOPQ,XTRA,YOPQ,YTDE,YTFI,YTLC,YTUC@8..144,100..1000,96,468,79,-203,738,514,712&display=swap');
+
+:root {
+  --font-display: 'Jost', system-ui, sans-serif;
+  --font-body: 'Roboto Flex', 'Century Gothic', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ---------- Color schemes ----------
+   Each scheme declares the same token set, including --wash: the tint
+   background-blend-mode uses to desaturate/duotone the tile-grid photos
+   (see ".tile-grid .cell" below). To add a scheme:
+     1. Add a [data-theme="id"] block here with all of these tokens.
+     2. Register { id, label } in the THEMES list in theme-switcher.js.
+   :root carries the "paper" values too, as the no-JS/pre-hydration default. */
+
+:root,
+[data-theme="paper"] {
+  --paper: #EDEEEB;
+  --ink: #1B1D1F;
+  --signal: #3A5A8C;
+  --signal-deep: #2E4A73;
+  --gray: #8C8F87;
+  --stone: #C9CCC4;
+  --wash: var(--gray);
+}
+
+[data-theme="dusk"] {
+  --paper: #EDEEEB;
+  --ink: #1B1D1F;
+  --signal: #708993;
+  --signal-deep: #19183B;
+  --gray: #A1C2BD;
+  --stone: #E7F2EF;
+  --wash: var(--gray);
+}
+
+[data-theme="popsicle"] {
+  --paper: #C9CCC4;
+  --ink: #EA047E;
+  --signal: #FF6D28;
+  --signal-deep: #00F5FF;
+  --gray: #FCE700;
+  --stone: #39FF14;
+  --wash: var(--gray);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  min-height: 100%;
+}
+
+body {
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ---------- Tile grid background ---------- */
+
+.tile-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+  grid-auto-rows: 128px;
+  opacity: 0.55;
+}
+
+.tile-grid .cell {
+  background-size: cover;
+  background-position: center;
+  background-color: var(--stone);
+  background-blend-mode: luminosity;
+  filter: brightness(1.15) contrast(0.85);
+  animation: flip 8s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.15s);
+}
+
+@keyframes flip {
+  0%, 40% { background-color: var(--gray); filter: brightness(1.15) contrast(0.85); }
+  50%, 90% { background-color: var(--stone); filter: brightness(0.4); background-image: none !important; }
+  100% { background-color: var(--gray); filter: brightness(1.15) contrast(0.85); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile-grid .cell {
+    animation: none;
+  }
+  .tile-grid .cell:nth-child(even) {
+    background-color: var(--stone);
+    background-image: none !important;
+  }
+}
+
+/* ---------- Layout shell ---------- */
+
+main {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 8vh 24px 10vh;
+}
+
+/* ---------- Back button ---------- */
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 8px 14px;
+  margin-bottom: 3vh;
+  border: 1px solid var(--stone);
+  background: var(--paper);
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.back-button:hover,
+.back-button:focus-visible {
+  background: var(--signal);
+  color: var(--paper);
+  border-color: var(--signal);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  background: var(--paper);
+  padding: 32px 28px;
+  margin-bottom: 6vh;
+  /*border: 1px solid var(--stone);*/
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 6vw, 2.75rem);
+  margin: 0 0 20px;
+  letter-spacing: -0.02em;
+}
+
+.blurb {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--ink);
+  margin: 0 0 24px;
+  max-width: 46ch;
+}
+
+.social-links {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+.social-links a {
+  color: var(--signal);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.social-links a:hover,
+.social-links a:focus-visible {
+  color: var(--signal-deep);
+  /*border-bottom-color: var(--signal-deep);*/
+}
+
+.social-links .dot {
+  color: var(--gray);
+  margin: 0 10px;
+}
+
+/* ---------- Sections ---------- */
+
+.section {
+  background: var(--paper);
+  margin-bottom: 6vh;
+  padding: 2vh;
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gray);
+  margin: 0 0 14px;
+}
+
+/* ---------- Project tiles ---------- */
+
+.tile-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  /*border: 1px solid var(--stone);*/
+}
+
+.tile-row + .tile-row {
+  border-top: 1px solid var(--stone);
+}
+
+.tile-link {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--paper);
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.tile-link:hover,
+.tile-link:focus-visible {
+  background: var(--signal);
+  color: var(--paper);
+}
+
+.tile-link:hover .tile-url,
+.tile-link:focus-visible .tile-url {
+  color: var(--paper);
+  opacity: 0.85;
+}
+
+.tile-link:hover .tile-arrow,
+.tile-link:focus-visible .tile-arrow {
+  transform: translateX(4px);
+}
+
+.tile-name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+
+.tile-url {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--gray);
+  flex: 1;
+  text-align: right;
+  transition: color 0.18s ease;
+}
+
+.tile-arrow {
+  font-family: var(--font-mono);
+  transition: transform 0.18s ease;
+}
+
+/* ---------- Writing stub ---------- */
+
+.stub-tile {
+  border: 1px dashed var(--stone);
+  padding: 20px;
+  color: var(--gray);
+}
+
+.stub-tile p {
+  margin: 0 0 8px;
+  font-size: 0.95rem;
+}
+
+.stub-tile p:last-child { margin-bottom: 0; }
+
+.stub-sub a {
+  color: var(--signal);
+}
+
+/* ---------- Post body ---------- */
+
+.post-body {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.post-body h2,
+.post-body h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  margin: 1.6em 0 0.6em;
+}
+
+.post-body p {
+  margin: 0 0 1.2em;
+}
+
+.post-body a {
+  color: var(--signal);
+}
+
+.post-body code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--stone);
+  padding: 0.1em 0.35em;
+}
+
+.post-body pre {
+  overflow-x: auto;
+  padding: 16px;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.post-body pre code {
+  background: none;
+  padding: 0;
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+  padding-top: 2vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--signal-deep);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.mono:hover,
+.mono:focus-visible {
+  color: var(--signal);
+}
+
+/* ---------- Theme switcher ---------- */
+
+.theme-switcher {
+  display: flex;
+  gap: 8px;
+}
+
+.theme-switcher button {
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: 1px solid var(--stone);
+  background: var(--swatch, var(--paper));
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.theme-switcher button:hover,
+.theme-switcher button:focus-visible {
+  border-color: var(--gray);
+}
+
+.theme-switcher button[aria-pressed="true"] {
+  border-color: var(--signal);
+  transform: scale(1.15);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 480px) {
+  .tile-link {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .tile-url { text-align: left; }
+}

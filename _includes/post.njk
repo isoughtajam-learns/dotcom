@@ -1,0 +1,16 @@
+---
+layout: base.njk
+backHref: /writing/
+backLabel: All writing
+---
+<header class="hero">
+  <h1 class="wordmark">{{ title }}</h1>
+  <p class="blurb">{{ summary }}</p>
+  <nav class="social-links">
+    <a href="/feed.xml">RSS</a>
+  </nav>
+</header>
+
+<article class="section post-body">
+  {{ content | safe }}
+</article>

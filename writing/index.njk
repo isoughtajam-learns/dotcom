@@ -1,0 +1,32 @@
+---
+layout: base.njk
+title: Writing
+permalink: /writing/index.html
+backHref: /
+backLabel: Back
+---
+<header class="hero">
+  <h1 class="wordmark">Writing</h1>
+  <p class="blurb">Notes on what I'm building and why.</p>
+  <nav class="social-links">
+    <a href="/feed.xml">RSS</a>
+  </nav>
+</header>
+
+<section class="section">
+  <ul class="tile-list">
+  {%- for post in collections.posts %}
+    <li class="tile-row">
+      <a href="{{ post.url }}" class="tile-link">
+        <span class="tile-name">{{ post.data.title }}</span>
+        <span class="tile-url">{{ post.data.date | postDate }}</span>
+        <span class="tile-arrow">&rarr;</span>
+      </a>
+    </li>
+  {%- else %}
+    <li class="stub-tile">
+      <p>Nothing published yet — working on it.</p>
+    </li>
+  {%- endfor %}
+  </ul>
+</section>
