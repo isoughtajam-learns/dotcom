@@ -45,6 +45,16 @@
   --wash: var(--gray);
 }
 
+[data-theme="forest"] {
+  --paper: #585869;
+  --ink: #191A19;
+  --signal: #4E9F3D;
+  --signal-deep: #1E5128;
+  --gray: #D8E9A8;
+  --stone: #4E9F3D;
+  --wash: var(--gray);
+}
+
 * { box-sizing: border-box; }
 
 html, body {

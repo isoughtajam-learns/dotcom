@@ -8,7 +8,8 @@
 const THEMES = [
   { id: 'paper', label: 'Paper', swatch: '#EDEEEB' },
   { id: 'dusk', label: 'Dusk', swatch: '#708993' },
-  { id: 'popsicle', label: 'Popsicle', swatch: '#EA047E' }
+  { id: 'popsicle', label: 'Popsicle', swatch: '#EA047E' },
+  { id: 'forest', label: 'Forest', swatch: '#4E9F3D' }
 ];
 
 (function () {
