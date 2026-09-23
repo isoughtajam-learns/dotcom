@@ -8,9 +8,9 @@ I've loved trains since I was tiny and while we Americans usually aren't allowed
 
 I wanted to build an application that explores a few things in more detail like adminstering AWS on my own, relying on gRPC, using the common server-side-events (SSE) pattern, and delivering a light and fun Vite + React frontend. My research guided me to [GTFS](https://gtfs.org/), the gold mine of transit data. The spec is comprehensive and eventhough not every transit system in the world is using it, there is an [active community](https://gtfs.org/community/get-involved/) maintaining feeds on a volunteer basis in many cases.
 
-## IRL Transit
+## [irltransit.com](https://irltransit.com)
 
-My contribution, [irltransit.com](https://irltransit.com), is kicking off as a live arrivals/departures feed with trip info details for a handful of transit systems. You can see live trips and current train status streaming in your browser. Sort the feed by expected next stop time, and filter it down to the lines and stations you care about most. Click on any event and see expected arrivals and departures through the end of the line. Any delays and negative delays(!) are along side the events they're baked into. 
+My contribution, IRL Transit, is kicking off as a live arrivals/departures feed with trip info details for a handful of transit systems. You can see live trips and current train status streaming in your browser. Sort the feed by expected next stop time, and filter it down to the lines and stations you care about most. Click on any event and see expected arrivals and departures through the end of the line. Any delays and negative delays(!) are along side the events they're baked into. 
 
 Tap the notifications icon to see current Service Alerts from the agency and filter down to the alerts that affect you most. All of these choices are still there next time you come back. And the best part is if you're in a pinch you can toggle to light mode and use it as a flashlight.
 
