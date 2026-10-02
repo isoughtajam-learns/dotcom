@@ -3,11 +3,14 @@
   "private": true,
   "scripts": {
     "build": "eleventy",
-    "dev": "eleventy --serve"
+    "dev": "eleventy --serve",
+    "predeploy": "npm run build",
+    "deploy": "wrangler deploy"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
-    "@11ty/eleventy-plugin-rss": "^2.0.2"
+    "@11ty/eleventy-plugin-rss": "^2.0.2",
+    "wrangler": "^4.146.0"
   },
   "dependencies": {
     "@11ty/eleventy-fetch": "^5.1.3"
