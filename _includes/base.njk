@@ -24,7 +24,7 @@
 
   <div class="tile-grid" id="tile-grid" aria-hidden="true"></div>
 
-  <main>
+  <main{% if wide %} class="wide"{% endif %}>
     {% if backHref %}
     <a href="{{ backHref }}" class="back-button">&larr; {{ backLabel }}</a>
     {% endif %}
@@ -38,5 +38,6 @@
 
   <script src="/tiles.js"></script>
   <script src="/theme-switcher.js"></script>
+  {% if wide %}<script src="/useful-tools.js"></script>{% endif %}
 </body>
 </html>

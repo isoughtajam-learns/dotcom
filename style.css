@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&family=JetBrains+Mono:wght@400;500&display=swaphttps://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght,XOPQ,XTRA,YOPQ,YTDE,YTFI,YTLC,YTUC@8..144,100..1000,96,468,79,-203,738,514,712&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght,XOPQ,XTRA,YOPQ,YTDE,YTFI,YTLC,YTUC@8..144,100..1000,96,468,79,-203,738,514,712&display=swap');
 
 :root {
   --font-display: 'Jost', system-ui, sans-serif;
@@ -53,6 +54,23 @@
   --gray: #D8E9A8;
   --stone: #4E9F3D;
   --wash: var(--gray);
+}
+
+/* ---------- Category colors ----------
+   Six slots for the /useful-tools/ category pills, derived from whichever
+   scheme is active by shading --signal (primary) and --signal-deep
+   (secondary) toward white and black. Since they reference the current
+   theme's own tokens, pill colors automatically stay coherent when the
+   scheme changes instead of using fixed hex values. See
+   _data/toolCategories.js, where each category names one of these
+   instead of a literal color. */
+:root {
+  --category-1: var(--signal);
+  --category-2: color-mix(in srgb, var(--signal) 65%, white);
+  --category-3: color-mix(in srgb, var(--signal) 65%, black);
+  --category-4: var(--signal-deep);
+  --category-5: color-mix(in srgb, var(--signal-deep) 65%, white);
+  --category-6: color-mix(in srgb, var(--signal-deep) 65%, black);
 }
 
 * { box-sizing: border-box; }
@@ -117,6 +135,10 @@ main {
   max-width: 640px;
   margin: 0 auto;
   padding: 8vh 24px 10vh;
+}
+
+main.wide {
+  max-width: 960px;
 }
 
 /* ---------- Back button ---------- */
@@ -367,20 +389,143 @@ main {
   width: 22px;
   height: 22px;
   padding: 0;
-  border: 1px solid var(--stone);
+  border: 1px solid transparent;
   background: var(--swatch, var(--paper));
   cursor: pointer;
   transition: border-color 0.15s ease, transform 0.15s ease;
 }
 
-.theme-switcher button:hover,
-.theme-switcher button:focus-visible {
-  border-color: var(--gray);
+.theme-switcher button[aria-pressed="true"] {
+  border-color: var(--swatch-outline);
+  transform: scale(1.15);
 }
 
-.theme-switcher button[aria-pressed="true"] {
-  border-color: var(--signal);
-  transform: scale(1.15);
+/* ---------- Useful Tools page ---------- */
+
+.tools-header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.pill {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 999px;
+  padding: 6px 16px;
+  cursor: pointer;
+  background: color-mix(in srgb, var(--pill-color) 30%, var(--paper));
+  color: var(--ink);
+  transition: box-shadow 0.15s ease;
+}
+
+.pill[aria-pressed="true"] {
+  box-shadow: 0 0 0 2px var(--pill-color) inset;
+  font-weight: 600;
+}
+
+.tools-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.tools-subnav {
+  padding: 10px;
+}
+
+.tools-subnav-group {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.subnav-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  border: none;
+  background: transparent;
+  color: var(--ink);
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.subnav-item.selected {
+  background: color-mix(in srgb, var(--cat-color) 30%, var(--paper));
+  font-weight: 600;
+}
+
+.tools-tiles {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tool-tile {
+  display: block;
+  margin-bottom: 0;
+  text-decoration: none;
+  color: var(--ink);
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.tool-tile[hidden] {
+  display: none;
+}
+
+.tool-tile:hover,
+.tool-tile:focus-visible {
+  background: var(--signal);
+  color: var(--paper);
+}
+
+.tool-tile .tile-name {
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+
+.tool-description {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.tool-description p {
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  .tools-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .tools-subnav-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tools-subnav-group[hidden] {
+    display: none;
+  }
+
+  .subnav-item {
+    width: auto;
+    border-radius: 999px;
+  }
 }
 
 /* ---------- Responsive ---------- */

@@ -1,15 +1,17 @@
 // Builds the footer's theme-switcher swatches and handles picking/persisting
 // a color scheme. The actual color values live in style.css as
-// [data-theme="id"] blocks — this file only needs an id/label/swatch per
-// scheme so the buttons can render themselves.
+// [data-theme="id"] blocks — this file only needs an id/label/swatch/
+// swatchOutline per scheme so the buttons can render themselves.
+// swatchOutline is the border color shown only on the currently selected
+// swatch (see .theme-switcher button[aria-pressed="true"] in style.css).
 //
 // To add a scheme: add a [data-theme="id"] block in style.css (see the
 // comment above the color-scheme tokens there), then add an entry here.
 const THEMES = [
-  { id: 'paper', label: 'Paper', swatch: '#EDEEEB' },
-  { id: 'dusk', label: 'Dusk', swatch: '#708993' },
-  { id: 'popsicle', label: 'Popsicle', swatch: '#EA047E' },
-  { id: 'forest', label: 'Forest', swatch: '#4E9F3D' }
+  { id: 'paper', label: 'Paper', swatch: '#EDEEEB', swatchOutline: '#2E4A73' },
+  { id: 'dusk', label: 'Dusk', swatch: '#708993', swatchOutline: '#19183B' },
+  { id: 'popsicle', label: 'Popsicle', swatch: '#EA047E', swatchOutline: '#00F5FF' },
+  { id: 'forest', label: 'Forest', swatch: '#4E9F3D', swatchOutline: '#1E5128' }
 ];
 
 (function () {
@@ -38,6 +40,7 @@ const THEMES = [
     btn.type = 'button';
     btn.dataset.themeId = theme.id;
     btn.style.setProperty('--swatch', theme.swatch);
+    btn.style.setProperty('--swatch-outline', theme.swatchOutline);
     btn.setAttribute('aria-label', theme.label + ' theme');
     btn.setAttribute('aria-pressed', String(theme.id === currentTheme()));
     btn.setAttribute('title', theme.label);

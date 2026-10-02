@@ -1,0 +1,42 @@
+---
+layout: base.njk
+title: Useful Tools
+permalink: /useful-tools/index.html
+wide: true
+backHref: /
+backLabel: Back home
+---
+<header class="hero tools-header" id="tools-header">
+  <h1 class="wordmark">Useful Tools</h1>
+  <p class="blurb">Write a description for this page here.</p>
+  <div class="pill-row" id="category-pills">
+    {%- for cat in toolCategories %}
+    <button type="button" class="pill" data-category="{{ cat.id }}" style="--pill-color: {{ cat.color }}" aria-pressed="false">{{ cat.name }}</button>
+    {%- endfor %}
+  </div>
+</header>
+
+<div class="tools-layout">
+  <nav class="tools-subnav section" id="tools-subnav" aria-label="Subcategories">
+    {%- for cat in toolCategories %}
+    <ul class="tools-subnav-group" data-category-group="{{ cat.id }}" hidden>
+      {%- for sub in cat.subcategories %}
+      <li>
+        <button type="button" class="subnav-item" data-subcategory="{{ sub.id }}" style="--cat-color: {{ cat.color }}">{{ sub.name }}</button>
+      </li>
+      {%- endfor %}
+    </ul>
+    {%- endfor %}
+  </nav>
+
+  <div class="tools-tiles" id="tools-tiles">
+    {%- for tool in collections.tools %}
+    <a href="{{ tool.data.url }}" class="section tool-tile" data-category="{{ tool.data.category }}" data-subcategory="{{ tool.data.subcategory }}" target="_blank" rel="noopener" hidden>
+      <h3 class="tile-name">{{ tool.data.title }}</h3>
+      {%- if tool.templateContent %}
+      <div class="tool-description">{{ tool.templateContent | safe }}</div>
+      {%- endif %}
+    </a>
+    {%- endfor %}
+  </div>
+</div>
